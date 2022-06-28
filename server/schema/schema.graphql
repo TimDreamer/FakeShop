@@ -1,0 +1,21 @@
+type Query {
+	products: [Product!]!
+}
+
+type Mutation {
+	decProduct(id: ID!): Product
+	incProduct(id: ID!): Product
+}
+
+type Product {
+	id: ID!
+	name: String!
+	imageURL: String!
+	description: String!
+	brand: String!
+	category: String!
+	price: Float!
+	countInStock: Int!
+	rating: Float!
+	numReviews: Int!
+}

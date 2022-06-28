@@ -1,0 +1,27 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "cross-env NODE_ENV=development nodemon -e 'js,ts,graphql' -x 'ts-node -r tsconfig-paths/register' -- src/index.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Tim Lu",
+	"license": "ISC",
+	"dependencies": {
+		"@faker-js/faker": "^7.2.0",
+		"apollo-server-caching": "^0.3.1",
+		"apollo-server-express": "^2.16.1",
+		"cross-env": "^5.2.1",
+		"express": "^4.17.1",
+		"graphql": "^15.3.0",
+		"graphql-fields": "^2.0.3",
+		"uuid": "^8.3.2"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.53",
+		"nodemon": "^2.0.4",
+		"tsconfig-paths": "^3.9.0"
+	}
+}
