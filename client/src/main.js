@@ -4,8 +4,11 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import apolloProvider from './apollo';
+import TrashSvg from '@/components/Icons/TrashSvg';
 
 Vue.use(VueRouter);
+
+Vue.component('trash-svg', TrashSvg);
 
 Vue.filter('currency', (val) => '$' + val.toLocaleString());
 

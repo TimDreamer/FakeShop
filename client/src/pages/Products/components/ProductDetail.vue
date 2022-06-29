@@ -1,7 +1,15 @@
 <template>
   <transition name="move">
     <div class="detail" v-show="isShow" v-if="selectedProduct">
-      <button @click="hideView" class="detail-goBackBtn">GO BACK</button>
+      <div class="detail-btnGroup">
+        <button @click="hideView" class="detail-goBackBtn">GO BACK</button>
+        <button
+          @click="$router.push({ name: 'ShoppingCart' })"
+          class="detail-goCart"
+        >
+          GO SHOPPING CART
+        </button>
+      </div>
       <div class="detail-wrapper">
         <div class="detail-showcase">
           <img :src="selectedProduct.imageURL" />
@@ -9,7 +17,7 @@
         <div class="detail-content">
           <h1 class="detail-content-title">{{ selectedProduct.name }}</h1>
           <div class="detail-content-rating">
-            <stars :rating="selectedProduct.rating"></stars>
+            <stars :rating="selectedProduct.rating" :scale="1.6"></stars>
             <span>{{ selectedProduct.numReviews }} reviews</span>
           </div>
           <p class="detail-content-price">
@@ -122,12 +130,18 @@ export default {
   font-size: 1.8rem
 
 %detailBtn
-  border: none
+  border: 1px solid currentColor
   outline: none
   cursor: pointer
   padding: 1rem 2rem
   font-weight: bold
   margin: 2rem
+
+%btnHover
+  transition: .5s
+  &:hover
+    color: $cta-2
+    transform: scale(1.1)
 
 .detail
   width: 100%
@@ -137,11 +151,22 @@ export default {
   top: 0
   z-index: 99
   background-color: white
-  padding: 4rem
+  padding: 3rem 4rem
+  &-btnGroup
+    display: flex
+    justify-content: space-between
+    margin-bottom: 2rem
   &-goBackBtn
     color: $gray-4
     background-color: white
     @extend %detailBtn
+    @extend %btnHover
+  &-goCart
+    color: $gray-4
+    background-color: white
+    @extend %detailBtn
+    @extend %btnHover
+
   &-wrapper
     +flexCenter
     flex-direction: column
@@ -179,12 +204,7 @@ export default {
       @extend %flexGroup
       gap: 5rem
     &-qty
-      text-align: center
-      background-color: $gray-1
-      border: none
-      padding: 1rem
-      &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
-        -webkit-appearance: none
+      @extend %qty
 
     &-btn
       align-self: stretch

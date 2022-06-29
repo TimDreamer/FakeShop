@@ -1,4 +1,9 @@
-import { CHANGE_SELECTED, SAVE_PRODUCTS, ADD_PRODUCTS_TO_CART } from '../types';
+import {
+	CHANGE_SELECTED,
+	SAVE_PRODUCTS,
+	ADD_PRODUCTS_TO_CART,
+	CHANGE_QTY,
+} from '../types';
 
 const state = {
 	products: [],
@@ -13,7 +18,9 @@ const getters = {
 	getProducts(state) {
 		return state.products;
 	},
-	// getProductsInCart(state) {},
+	getProductsInCart(state) {
+		return state.productsInCart;
+	},
 };
 
 const mutations = {
@@ -38,6 +45,15 @@ const mutations = {
 		product.qty += qty;
 		product.countInStock -= qty;
 	},
+	[CHANGE_QTY](state, { id, newQty }) {
+		const product = state.productsInCart.find((p) => p.id === id);
+		if (!product) {
+			throw new Error('Product should be in cart but not');
+		}
+		const qtyDiff = product.qty - newQty;
+		product.qty = newQty;
+		product.countInStock += qtyDiff;
+	},
 };
 
 const actions = {
@@ -51,6 +67,10 @@ const actions = {
 	},
 	[ADD_PRODUCTS_TO_CART]({ commit }, payload) {
 		commit(ADD_PRODUCTS_TO_CART, payload);
+		return Promise.resolve();
+	},
+	[CHANGE_QTY]({ commit }, payload) {
+		commit(CHANGE_QTY, payload);
 		return Promise.resolve();
 	},
 };
