@@ -31,6 +31,7 @@ const actions = {
 	},
 	[CHANGE_SELECTED]({ commit }, id) {
 		commit(CHANGE_SELECTED, id);
+		return Promise.resolve();
 	},
 };
 

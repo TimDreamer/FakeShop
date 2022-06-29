@@ -1,6 +1,11 @@
 <template>
   <div class="product-item">
-    <img :src="product.imageURL" alt="product" class="product-item-img" />
+    <img
+      :src="product.imageURL"
+      alt="product"
+      class="product-item-img"
+      v-on="$listeners"
+    />
     <h1>{{ product.name }}</h1>
     <h2>{{ product.brand }}</h2>
     <h2>{{ product.category }}</h2>

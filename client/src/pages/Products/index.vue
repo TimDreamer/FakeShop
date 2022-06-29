@@ -5,13 +5,10 @@
         v-for="product in products"
         :product="product"
         :key="product.id"
-        @click.native="showView(product)"
+        @click="showView(product.id)"
       ></product>
     </div>
-    <product-detail
-      :selectedProduct="selectedProduct"
-      ref="pDetail"
-    ></product-detail>
+    <product-detail ref="pDetail"></product-detail>
   </div>
 </template>
 
@@ -19,6 +16,8 @@
 import Product from "./components/product.vue";
 import ProductDetail from "./components/ProductDetail.vue";
 import ProductsQuery from "../../schema/ProductsQuery.js";
+
+import { CHANGE_SELECTED, SAVE_PRODUCTS } from "../../store/types";
 
 export default {
   name: "Products",
@@ -33,14 +32,18 @@ export default {
     };
   },
   methods: {
-    showView(product) {
-      this.selectedProduct = product;
-      this.$refs.pDetail.showView();
+    showView(id) {
+      this.$store.dispatch(CHANGE_SELECTED, id).then(() => {
+        this.$refs.pDetail.showView();
+      });
     },
   },
   apollo: {
     products: {
       query: ProductsQuery,
+      result({ data: { products } }) {
+        this.$store.dispatch(SAVE_PRODUCTS, products);
+      },
     },
   },
 };

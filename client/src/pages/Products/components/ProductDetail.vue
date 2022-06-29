@@ -62,6 +62,7 @@
 
 <script>
 import Stars from "../../../components/Stars";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ProductDetail",
@@ -74,11 +75,10 @@ export default {
       qty: 0,
     };
   },
-  props: {
-    selectedProduct: {
-      type: Object,
-      default: null,
-    },
+  computed: {
+    ...mapGetters({
+      selectedProduct: "getSelectedProduct",
+    }),
   },
   methods: {
     showView() {
@@ -126,17 +126,16 @@ export default {
     z-index: 99
     background-color: white
     padding: 4rem
+    &-goBackBtn
+        color: $gray-4
+        background-color: white
+        @extend %detailBtn
     &-wrapper
         +flexCenter
         flex-direction: column
         gap: 4rem
         img
             width: 100%
-    &-goBackBtn
-
-        color: $gray-4
-        background-color: white
-        @extend %detailBtn
     &-showcase
         flex: 1
     &-content
@@ -172,8 +171,8 @@ export default {
             background-color: $gray-1
             border: none
             padding: 1rem
-            &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
-                -webkit-appearance: none
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+            -webkit-appearance: none
 
         &-btn
             align-self: stretch
