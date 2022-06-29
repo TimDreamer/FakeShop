@@ -35,12 +35,13 @@
               type="number"
               min="0"
               :max="selectedProduct.countInStock"
-              v-model="qty"
+              v-model.number="qty"
             />
           </div>
           <button
             :disabled="selectedProduct.countInStock === 0"
             class="detail-buy-btn"
+            @click="addProductsToCart"
           >
             ADD TO CART
           </button>
@@ -63,6 +64,7 @@
 <script>
 import Stars from "../../../components/Stars";
 import { mapGetters } from "vuex";
+import { ADD_PRODUCTS_TO_CART } from "../../../store/types";
 
 export default {
   name: "ProductDetail",
@@ -87,6 +89,16 @@ export default {
     hideView() {
       this.isShow = false;
     },
+    addProductsToCart() {
+      this.$store
+        .dispatch(ADD_PRODUCTS_TO_CART, {
+          qty: this.qty,
+          id: this.selectedProduct.id,
+        })
+        .then(() => {
+          this.qty = 0;
+        });
+    },
   },
   watch: {
     isShow() {
@@ -102,100 +114,104 @@ export default {
 @use "../../../sass/variables" as *
 
 %flexGroup
-    width: 100%
-    display: flex
-    justify-content: space-between
-    padding: 2rem
-    border-bottom: 1px solid $gray-2
-    font-size: 1.8rem
+  width: 100%
+  display: flex
+  justify-content: space-between
+  padding: 2rem
+  border-bottom: 1px solid $gray-2
+  font-size: 1.8rem
 
 %detailBtn
-    border: none
-    outline: none
-    cursor: pointer
-    padding: 1rem 2rem
-    font-weight: bold
-    margin: 2rem
+  border: none
+  outline: none
+  cursor: pointer
+  padding: 1rem 2rem
+  font-weight: bold
+  margin: 2rem
 
 .detail
-    width: 100%
-    height: 100%
-    position: fixed
-    left: 0
-    top: 0
-    z-index: 99
+  width: 100%
+  height: 100%
+  position: fixed
+  left: 0
+  top: 0
+  z-index: 99
+  background-color: white
+  padding: 4rem
+  &-goBackBtn
+    color: $gray-4
     background-color: white
-    padding: 4rem
-    &-goBackBtn
-        color: $gray-4
-        background-color: white
-        @extend %detailBtn
-    &-wrapper
-        +flexCenter
-        flex-direction: column
-        gap: 4rem
-        img
-            width: 100%
-    &-showcase
-        flex: 1
-    &-content
-        flex: 0 0 25%
-        margin: 0 25%
-        &-title
-            min-width: max-content
-            text-transform: uppercase
-            padding-bottom: 3rem
-            border-bottom: 1px solid $gray-2
-            font-size: 2.4rem
-        &-rating
-            @extend %flexGroup
-        &-price
-            @extend %flexGroup
-        &-description
-            margin-top: 2rem
-            font-size: 1.8rem
-    &-buy
-        flex: 0 0 25%
-        align-self: stretch
-        margin: 0 35%
-        +flexCenter
-        flex-direction: column
-        align-items: flex-start
-        border: 2px solid $gray-2
-        border-radius: 10px
-        &-group
-            @extend %flexGroup
-            gap: 5rem
-        &-qty
-            text-align: center
-            background-color: $gray-1
-            border: none
-            padding: 1rem
-        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
-            -webkit-appearance: none
+    @extend %detailBtn
+  &-wrapper
+    +flexCenter
+    flex-direction: column
+    gap: 4rem
+    img
+      width: 100%
+  &-showcase
+    flex: 1
+  &-content
+    flex: 0 0 25%
+    margin: 0 25%
+    &-title
+      min-width: max-content
+      text-transform: uppercase
+      padding-bottom: 3rem
+      border-bottom: 1px solid $gray-2
+      font-size: 2.4rem
+    &-rating
+      @extend %flexGroup
+    &-price
+      @extend %flexGroup
+    &-description
+      margin-top: 2rem
+      font-size: 1.8rem
+  &-buy
+    flex: 0 0 25%
+    align-self: stretch
+    margin: 0 35%
+    +flexCenter
+    flex-direction: column
+    align-items: flex-start
+    border: 2px solid $gray-2
+    border-radius: 10px
+    &-group
+      @extend %flexGroup
+      gap: 5rem
+    &-qty
+      text-align: center
+      background-color: $gray-1
+      border: none
+      padding: 1rem
+      &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+        -webkit-appearance: none
 
-        &-btn
-            align-self: stretch
-            @extend %detailBtn
-            background-color: $gray-4
-            color: $gray-1
+    &-btn
+      align-self: stretch
+      @extend %detailBtn
+      background-color: $gray-4
+      color: $gray-1
+      &:disabled
+        color: $gray-1
+        background-color: $gray-2
+        cursor: not-allowed
 
-    &-reviews
-        align-self: stretch
-        margin: 0 15%
-        &-title
-            letter-spacing: .1rem
-        &-noComment
-            text-align: center
-            margin-top: 2rem
-            background-color: $info-1
-            color: $info-3
-            padding: 1rem 2rem
-            font-size: 2.4rem
+  &-reviews
+    align-self: stretch
+    margin: 0 15%
+    &-title
+      letter-spacing: .1rem
+    &-noComment
+      text-align: center
+      margin-top: 2rem
+      background-color: $info-1
+      color: $info-3
+      padding: 1rem 2rem
+      font-size: 2.4rem
 
 .move
-    &-enter-active, &-leave-active
-        transition: 1s
-    &-enter, &-leave-to
-        transform: translateX(100%)
+  &-enter-active, &-leave-active
+    transition: 1s
+  &-enter, &-leave-to
+    transform: translateX(100%)
 </style>

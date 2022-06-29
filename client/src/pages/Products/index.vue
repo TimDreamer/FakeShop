@@ -15,9 +15,9 @@
 <script>
 import Product from "./components/product.vue";
 import ProductDetail from "./components/ProductDetail.vue";
-import ProductsQuery from "../../schema/ProductsQuery.js";
+import { mapGetters } from "vuex";
 
-import { CHANGE_SELECTED, SAVE_PRODUCTS } from "../../store/types";
+import { CHANGE_SELECTED } from "../../store/types";
 
 export default {
   name: "Products",
@@ -27,23 +27,19 @@ export default {
   },
   data() {
     return {
-      products: [],
       selectedProduct: null,
     };
+  },
+  computed: {
+    ...mapGetters({
+      products: "getProducts",
+    }),
   },
   methods: {
     showView(id) {
       this.$store.dispatch(CHANGE_SELECTED, id).then(() => {
         this.$refs.pDetail.showView();
       });
-    },
-  },
-  apollo: {
-    products: {
-      query: ProductsQuery,
-      result({ data: { products } }) {
-        this.$store.dispatch(SAVE_PRODUCTS, products);
-      },
     },
   },
 };
