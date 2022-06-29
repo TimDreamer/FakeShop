@@ -1,0 +1,2 @@
+export const CHANGE_SELECTED = 'CHANGE_SELECTED';
+export const SAVE_PRODUCTS = 'SAVE_PRODUCTS';
