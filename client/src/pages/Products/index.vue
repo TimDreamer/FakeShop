@@ -17,7 +17,7 @@
 
 <script>
 import Product from "./components/product.vue";
-import ProductDetail from "../ProductDetail";
+import ProductDetail from "./components/ProductDetail.vue";
 import ProductsQuery from "../../schema/ProductsQuery.js";
 
 export default {
@@ -55,4 +55,5 @@ export default {
     margin: 6rem auto
     +gridTemplate(null, 2, 30px)
     +gridCenter
+    position: relative
 </style>
