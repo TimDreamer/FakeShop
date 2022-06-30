@@ -12,7 +12,7 @@
       >
       <router-link :to="{ name: 'ShoppingCart' }" class="links-item"
         >ShoppingCart
-        <Badge :point="getCartProductsTotal"></Badge>
+        <Badge :point="getQrtTotal"></Badge>
       </router-link>
     </div>
   </nav>
@@ -20,6 +20,7 @@
 
 <script>
 import Badge from "@/components/Badge";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Nav",
@@ -27,11 +28,7 @@ export default {
     Badge,
   },
   computed: {
-    getCartProductsTotal() {
-      return this.$store.getters.getProductsInCart.reduce((acc, p) => {
-        return acc + p.qty;
-      }, 0);
-    },
+    ...mapGetters(["getQrtTotal"]),
   },
 };
 </script>

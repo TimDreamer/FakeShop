@@ -129,14 +129,6 @@ export default {
   border-bottom: 1px solid $gray-2
   font-size: 1.8rem
 
-%detailBtn
-  border: 1px solid currentColor
-  outline: none
-  cursor: pointer
-  padding: 1rem 2rem
-  font-weight: bold
-  margin: 2rem
-
 %btnHover
   transition: .5s
   &:hover
@@ -184,6 +176,7 @@ export default {
       padding-bottom: 3rem
       border-bottom: 1px solid $gray-2
       font-size: 2.4rem
+      text-align: center
     &-rating
       @extend %flexGroup
     &-price
@@ -211,10 +204,7 @@ export default {
       @extend %detailBtn
       background-color: $gray-4
       color: $gray-1
-      &:disabled
-        color: $gray-1
-        background-color: $gray-2
-        cursor: not-allowed
+      @extend %disabled-btn
 
   &-reviews
     align-self: stretch

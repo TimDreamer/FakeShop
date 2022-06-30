@@ -33,14 +33,17 @@ export default {
 
 <style lang="sass">
 @use "./sass/animations" as *
+@import url('https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@1,500&display=swap')
 
 *, *::before, *::after
   padding: 0
   margin: 0
   box-sizing: inherit
+  font-family: inherit
 
 html
   font-size: 62.5%
+  font-family: 'Finlandica', cursive, sans-serif
 body
   box-sizing: border-box
 

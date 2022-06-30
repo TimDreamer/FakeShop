@@ -3,12 +3,25 @@ import {
 	SAVE_PRODUCTS,
 	ADD_PRODUCTS_TO_CART,
 	CHANGE_QTY,
+	CLEAR_ALL,
 } from '../types';
 
 import { sortByBrand } from '@/utils';
 
-const reAssignCart = (arr, newProduct, compare) => {
-	return compare ? [...arr, newProduct].sort(compare) : [...arr, newProduct];
+const shoppingUtils = {
+	spliceProductInCart(id) {
+		const idx = state.productsInCart.findIndex((p) => p.id === id);
+		if (idx === -1) {
+			throw new Error('Product should be in cart but not');
+		}
+		const product = state.productsInCart.splice(idx, 1)[0];
+		return [product, state.productsInCart];
+	},
+	reAssignCart(arr, newProduct, compare) {
+		return compare
+			? [...arr, newProduct].sort(compare)
+			: [...arr, newProduct];
+	},
 };
 
 const state = {
@@ -26,6 +39,16 @@ const getters = {
 	},
 	getProductsInCart(state) {
 		return state.productsInCart;
+	},
+	getQrtTotal(state) {
+		return state.productsInCart.reduce((acc, p) => {
+			return acc + p.qty;
+		}, 0);
+	},
+	getQrtPriceTotal(state) {
+		return state.productsInCart.reduce((acc, p) => {
+			return acc + p.qty * p.price;
+		}, 0);
 	},
 };
 
@@ -45,9 +68,7 @@ const mutations = {
 		let product = state.productsInCart.find((p) => p.id === id);
 		if (!product) {
 			product = state.products.find((p) => p.id === id);
-			// state.productsInCart.push(product);
-			// state.productsInCart = [...state.productsInCart, product];
-			state.productsInCart = reAssignCart(
+			state.productsInCart = shoppingUtils.reAssignCart(
 				state.productsInCart,
 				product,
 				sortByBrand
@@ -58,19 +79,20 @@ const mutations = {
 		product.countInStock -= qty;
 	},
 	[CHANGE_QTY](state, { id, newQty }) {
-		const idx = state.productsInCart.findIndex((p) => p.id === id);
-		if (idx === -1) {
-			throw new Error('Product should be in cart but not');
-		}
-		const product = state.productsInCart.splice(idx, 1)[0];
+		const [product, productsInCart] = shoppingUtils.spliceProductInCart(id);
 		const qtyDiff = product.qty - newQty;
 		product.qty = newQty;
 		product.countInStock += qtyDiff;
-		state.productsInCart = reAssignCart(
-			state.productsInCart,
+		state.productsInCart = shoppingUtils.reAssignCart(
+			productsInCart,
 			product,
 			sortByBrand
 		);
+	},
+	[CLEAR_ALL](_, { id }) {
+		const [product] = shoppingUtils.spliceProductInCart(id);
+		product.countInStock += product.qty;
+		product.qty = 0;
 	},
 };
 
@@ -89,6 +111,10 @@ const actions = {
 	},
 	[CHANGE_QTY]({ commit }, payload) {
 		commit(CHANGE_QTY, payload);
+		return Promise.resolve();
+	},
+	[CLEAR_ALL]({ commit }, payload) {
+		commit(CLEAR_ALL, payload);
 		return Promise.resolve();
 	},
 };

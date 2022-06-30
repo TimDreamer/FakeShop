@@ -2,3 +2,4 @@ export const CHANGE_SELECTED = 'CHANGE_SELECTED';
 export const SAVE_PRODUCTS = 'SAVE_PRODUCTS';
 export const ADD_PRODUCTS_TO_CART = 'ADD_PRODUCTS_TO_CART';
 export const CHANGE_QTY = 'CHANGE_QTY';
+export const CLEAR_ALL = 'CLEAR_ALL';
