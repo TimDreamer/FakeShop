@@ -70,9 +70,9 @@
 </template>
 
 <script>
-import Stars from "../../../components/Stars";
+import Stars from "@/components/Stars";
 import { mapGetters } from "vuex";
-import { ADD_PRODUCTS_TO_CART } from "../../../store/types";
+import { ADD_PRODUCTS_TO_CART } from "@/store/types";
 
 export default {
   name: "ProductDetail",
@@ -117,9 +117,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../../../sass/extends" as *
-@use "../../../sass/mixins" as *
-@use "../../../sass/variables" as *
+@use "@/sass/extends" as *
+@use "@/sass/mixins" as *
+@use "@/sass/variables" as *
 
 %flexGroup
   width: 100%

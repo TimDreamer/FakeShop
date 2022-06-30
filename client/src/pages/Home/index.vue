@@ -20,8 +20,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../../sass/mixins" as *
-@use "../../sass/variables" as *
+@use "@/sass/mixins" as *
+@use "@/sass/variables" as *
 
 .cta
   width: 100%

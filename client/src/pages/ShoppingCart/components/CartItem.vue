@@ -26,7 +26,7 @@
 <script>
 import { CHANGE_QTY, CLEAR_ALL } from "@/store/types";
 import { debounce } from "@/utils";
-import TrashSvg from "../../../components/Icons/TrashSvg.vue";
+import TrashSvg from "@/components/Icons/TrashSvg.vue";
 
 export default {
   components: { TrashSvg },
@@ -57,9 +57,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../../../sass/extends" as *
-@use "../../../sass/mixins" as *
-@use "../../../sass/variables" as *
+@use "@/sass/extends" as *
+@use "@/sass/mixins" as *
+@use "@/sass/variables" as *
 
 $fontSize: 1.4rem
 

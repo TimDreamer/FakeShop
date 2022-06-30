@@ -34,9 +34,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../../sass/variables" as *
-@use "../../sass/mixins" as *
-@use "../../sass/extends" as *
+@use "@/sass/variables" as *
+@use "@/sass/mixins" as *
+@use "@/sass/extends" as *
 
 .nav
   height: 100%

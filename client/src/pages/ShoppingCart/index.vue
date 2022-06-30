@@ -40,8 +40,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import CartItem from "./components/CartItem.vue";
-import NothingPage from "./components/Nothing.vue";
+import CartItem from "@/pages/ShoppingCart/components/CartItem.vue";
+import NothingPage from "@/pages/ShoppingCart/components/Nothing.vue";
 import CtaBtn from "@/components/CtaBtn";
 
 export default {

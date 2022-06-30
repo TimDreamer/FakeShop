@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-import apolloProvider from './apollo';
+import App from '@/App.vue';
+import router from '@/router';
+import store from '@/store';
+import apolloProvider from '@/apollo';
 import TrashSvg from '@/components/Icons/TrashSvg';
 
 Vue.use(VueRouter);

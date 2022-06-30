@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import Product from "./components/product.vue";
-import ProductDetail from "./components/ProductDetail.vue";
+import Product from "@/pages/Products/components/product.vue";
+import ProductDetail from "@/pages/Products/components/ProductDetail.vue";
 import { mapGetters } from "vuex";
 
-import { CHANGE_SELECTED } from "../../store/types";
+import { CHANGE_SELECTED } from "@/store/types";
 
 export default {
   name: "Products",
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../../sass/mixins" as *
+@use "@/sass/mixins" as *
 
 .products
   &-list

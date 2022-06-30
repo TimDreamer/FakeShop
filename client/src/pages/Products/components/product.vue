@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Stars from "../../../components/Stars";
+import Stars from "@/components/Stars";
 
 export default {
   name: "Product",
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use '../../../sass/variables' as *
+@use '@/sass/variables' as *
 
 .product
   padding: 3rem 2rem 6rem

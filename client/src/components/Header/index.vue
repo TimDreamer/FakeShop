@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Nav from "../Nav";
+import Nav from "@/components/Nav";
 export default {
   name: "Header",
   components: {
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use "../../sass/variables" as *
+@use "@/sass/variables" as *
 
 .header
   width: 100%

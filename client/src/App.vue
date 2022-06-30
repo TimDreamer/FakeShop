@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Header from "./components/Header";
-import ProductsQuery from "./schema/ProductsQuery";
-import { SAVE_PRODUCTS } from "./store/types";
+import Header from "@/components/Header";
+import ProductsQuery from "@/schema/ProductsQuery";
+import { SAVE_PRODUCTS } from "@/store/types";
 
 export default {
   name: "App",
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="sass">
-@use "./sass/animations" as *
+@use "@/sass/animations" as *
 @import url('https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@1,500&display=swap')
 
 *, *::before, *::after
@@ -49,7 +49,6 @@ body
 
 #app
   height: 100vh
-  // overflow: hidden
 
 .slide
   &-enter

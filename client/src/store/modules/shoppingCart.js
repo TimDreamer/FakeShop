@@ -4,7 +4,7 @@ import {
 	ADD_PRODUCTS_TO_CART,
 	CHANGE_QTY,
 	CLEAR_ALL,
-} from '../types';
+} from '@/store/types';
 
 import { sortByBrand } from '@/utils';
 
