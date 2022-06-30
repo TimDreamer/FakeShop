@@ -11,15 +11,28 @@
         >Products</router-link
       >
       <router-link :to="{ name: 'ShoppingCart' }" class="links-item"
-        >ShoppingCart</router-link
-      >
+        >ShoppingCart
+        <Badge :point="getCartProductsTotal"></Badge>
+      </router-link>
     </div>
   </nav>
 </template>
 
 <script>
+import Badge from "@/components/Badge";
+
 export default {
   name: "Nav",
+  components: {
+    Badge,
+  },
+  computed: {
+    getCartProductsTotal() {
+      return this.$store.getters.getProductsInCart.reduce((acc, p) => {
+        return acc + p.qty;
+      }, 0);
+    },
+  },
 };
 </script>
 
@@ -29,22 +42,23 @@ export default {
 @use "../../sass/extends" as *
 
 .nav
-   height: 100%
-   background-color: $gray-4
-   flex: 1
-   +flexCenter
-   justify-content: space-between
-   padding: 0 32px
-   .brand
-      &-name
-         font-size: 32px
-         color: $gray-2
-   .links
-      flex: 0 0 50%
-      +flexCenter
-      justify-content: space-between
-      &-item
-         text-decoration: none
-         font-size: 24px
-         @extend %button
+  height: 100%
+  background-color: $gray-4
+  flex: 1
+  +flexCenter
+  justify-content: space-between
+  padding: 0 32px
+  .brand
+    &-name
+      font-size: 32px
+      color: $gray-2
+  .links
+    flex: 0 0 50%
+    +flexCenter
+    justify-content: space-between
+    &-item
+      text-decoration: none
+      font-size: 24px
+      @extend %button
+      position: relative
 </style>

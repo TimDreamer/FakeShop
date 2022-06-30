@@ -5,6 +5,12 @@ import {
 	CHANGE_QTY,
 } from '../types';
 
+import { sortByBrand } from '@/utils';
+
+const reAssignCart = (arr, newProduct, compare) => {
+	return compare ? [...arr, newProduct].sort(compare) : [...arr, newProduct];
+};
+
 const state = {
 	products: [],
 	selectedProduct: null,
@@ -39,20 +45,32 @@ const mutations = {
 		let product = state.productsInCart.find((p) => p.id === id);
 		if (!product) {
 			product = state.products.find((p) => p.id === id);
-			state.productsInCart.push(product);
+			// state.productsInCart.push(product);
+			// state.productsInCart = [...state.productsInCart, product];
+			state.productsInCart = reAssignCart(
+				state.productsInCart,
+				product,
+				sortByBrand
+			);
 		}
 
 		product.qty += qty;
 		product.countInStock -= qty;
 	},
 	[CHANGE_QTY](state, { id, newQty }) {
-		const product = state.productsInCart.find((p) => p.id === id);
-		if (!product) {
+		const idx = state.productsInCart.findIndex((p) => p.id === id);
+		if (idx === -1) {
 			throw new Error('Product should be in cart but not');
 		}
+		const product = state.productsInCart.splice(idx, 1)[0];
 		const qtyDiff = product.qty - newQty;
 		product.qty = newQty;
 		product.countInStock += qtyDiff;
+		state.productsInCart = reAssignCart(
+			state.productsInCart,
+			product,
+			sortByBrand
+		);
 	},
 };
 

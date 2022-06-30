@@ -8,3 +8,9 @@ export const debounce = (cb, delay = 500) => {
 		}, delay);
 	};
 };
+
+export const sortByBrand = (a, b) => {
+	const brandA = a.brand.toLowerCase();
+	const brandB = b.brand.toLowerCase();
+	return brandA > brandB ? 1 : brandA < brandB ? -1 : a.name > b.name;
+};
