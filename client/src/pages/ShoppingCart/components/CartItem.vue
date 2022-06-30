@@ -48,12 +48,9 @@ export default {
         id: this.product.id,
         newQty: +e.target.value,
       });
-      console.log("change");
     },
     clearAll() {
-      console.log("before");
       this.$store.dispatch(CLEAR_ALL, { id: this.product.id });
-      console.log("after");
     },
   },
 };
