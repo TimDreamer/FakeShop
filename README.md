@@ -30,7 +30,7 @@ FakeShop is a project for training my own skills.
 
 -   default PORT / endpoint
     -   client: 8080
-    -   server: 4000
+    -   server: 8081
     -   graphql: api/graphql
 
 *   Inspired by [Brad Traversy](https://www.udemy.com/course/mern-ecommerce/learn/lecture/22515124])

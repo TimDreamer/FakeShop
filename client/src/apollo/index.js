@@ -6,7 +6,7 @@ import VueApollo from 'vue-apollo';
 
 Vue.use(VueApollo);
 
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'http://localhost:8081';
 const GRAPHQL_ENDPOINT = 'api/graphql';
 
 const httpLink = createHttpLink({
