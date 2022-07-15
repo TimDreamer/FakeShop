@@ -33,6 +33,7 @@ export default {
 
 <style lang="sass">
 @use "@/sass/animations" as *
+@use "@/sass/mixins" as *
 @import url('https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@1,500&display=swap')
 
 *, *::before, *::after
@@ -46,6 +47,7 @@ html
   font-family: 'Finlandica', cursive, sans-serif
 body
   box-sizing: border-box
+  +hideScrollBar
 
 #app
   height: 100vh

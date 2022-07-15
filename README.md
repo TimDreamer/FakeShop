@@ -33,4 +33,4 @@ FakeShop is a project for training my own skills.
     -   server: 8081
     -   graphql: api/graphql
 
-*   Inspired by [Brad Traversy](https://www.udemy.com/course/mern-ecommerce/learn/lecture/22515124])
+*   Images from [Brad Traversy](https://www.udemy.com/course/mern-ecommerce/learn/lecture/22515124])

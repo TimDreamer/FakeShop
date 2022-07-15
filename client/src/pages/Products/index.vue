@@ -1,14 +1,18 @@
 <template>
   <div class="products">
-    <div class="products-list">
-      <product
-        v-for="product in products"
-        :product="product"
-        :key="product.id"
-        @click="showView(product.id)"
-      ></product>
-    </div>
-    <product-detail ref="pDetail"></product-detail>
+    <scroll-wrapper>
+      <div class="products-wrapper">
+        <div class="products-list">
+          <product
+            v-for="product in products"
+            :product="product"
+            :key="product.id"
+            @click="showView(product.id)"
+          ></product>
+        </div>
+        <product-detail ref="pDetail"></product-detail>
+      </div>
+    </scroll-wrapper>
   </div>
 </template>
 
@@ -49,6 +53,13 @@ export default {
 @use "@/sass/mixins" as *
 
 .products
+  position: fixed
+  width: 100%
+  height: calc( 100vh - 120px )
+  top: 120px
+  left: 0
+  &-wrapper
+    height: calc( 100vh - 120px )
   &-list
     width: 90%
     margin: 6rem auto

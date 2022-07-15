@@ -5,10 +5,14 @@ import router from '@/router';
 import store from '@/store';
 import apolloProvider from '@/apollo';
 import TrashSvg from '@/components/Icons/TrashSvg';
+import ScrollWrapper from '@/components/ScrollWrapper';
+import SpinnerWrapper from '@/components/SpinnerWrapper';
 
 Vue.use(VueRouter);
 
 Vue.component('trash-svg', TrashSvg);
+Vue.component('scroll-wrapper', ScrollWrapper);
+Vue.component('spinner-wrapper', SpinnerWrapper);
 
 Vue.filter('currency', (val) => '$' + val.toLocaleString());
 

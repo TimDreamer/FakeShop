@@ -1,71 +1,73 @@
 <template>
   <transition name="move">
-    <div class="detail" v-show="isShow" v-if="selectedProduct">
-      <div class="detail-btnGroup">
-        <button @click="hideView" class="detail-goBackBtn">GO BACK</button>
-        <button
-          @click="$router.push({ name: 'ShoppingCart' })"
-          class="detail-goCart"
-        >
-          GO SHOPPING CART
-        </button>
-      </div>
-      <div class="detail-wrapper">
-        <div class="detail-showcase">
-          <img :src="selectedProduct.imageURL" />
-        </div>
-        <div class="detail-content">
-          <h1 class="detail-content-title">{{ selectedProduct.name }}</h1>
-          <div class="detail-content-rating">
-            <stars :rating="selectedProduct.rating" :scale="1.6"></stars>
-            <span>{{ selectedProduct.numReviews }} reviews</span>
-          </div>
-          <p class="detail-content-price">
-            Price: <span>{{ selectedProduct.price | currency }}</span>
-          </p>
-          <p class="detail-content-description">
-            {{ selectedProduct.description }}
-          </p>
-        </div>
-        <div class="detail-buy">
-          <div class="detail-buy-group">
-            <span>Price:</span>
-            <span>{{ selectedProduct.price | currency }}</span>
-          </div>
-          <div class="detail-buy-group">
-            <span>In stock: </span>
-            <span>{{ selectedProduct.countInStock }}</span>
-          </div>
-          <div class="detail-buy-group">
-            <span>Qty</span>
-            <input
-              class="detail-buy-qty"
-              type="number"
-              min="0"
-              :max="selectedProduct.countInStock"
-              v-model.number="qty"
-            />
-          </div>
+    <scroll-wrapper direction="vertical">
+      <div class="detail" v-show="isShow" v-if="selectedProduct">
+        <div class="detail-btnGroup">
+          <button @click="hideView" class="detail-goBackBtn">GO BACK</button>
           <button
-            :disabled="selectedProduct.countInStock === 0"
-            class="detail-buy-btn"
-            @click="addProductsToCart"
+            @click="$router.push({ name: 'ShoppingCart' })"
+            class="detail-goCart"
           >
-            ADD TO CART
+            GO SHOPPING CART
           </button>
         </div>
-        <div class="detail-reviews">
-          <h1 class="detail-reviews-title">REVIEWS</h1>
-          <div class="detail-reviews-content">
-            <div
-              class="detail-reviews-comments"
-              v-if="selectedProduct.numReviews.length > 0"
-            ></div>
-            <div class="detail-reviews-noComment" v-else>No Reviews</div>
+        <div class="detail-wrapper">
+          <div class="detail-showcase">
+            <img :src="selectedProduct.imageURL" />
+          </div>
+          <div class="detail-content">
+            <h1 class="detail-content-title">{{ selectedProduct.name }}</h1>
+            <div class="detail-content-rating">
+              <stars :rating="selectedProduct.rating" :scale="1.6"></stars>
+              <span>{{ selectedProduct.numReviews }} reviews</span>
+            </div>
+            <p class="detail-content-price">
+              Price: <span>{{ selectedProduct.price | currency }}</span>
+            </p>
+            <p class="detail-content-description">
+              {{ selectedProduct.description }}
+            </p>
+          </div>
+          <div class="detail-buy">
+            <div class="detail-buy-group">
+              <span>Price:</span>
+              <span>{{ selectedProduct.price | currency }}</span>
+            </div>
+            <div class="detail-buy-group">
+              <span>In stock: </span>
+              <span>{{ selectedProduct.countInStock }}</span>
+            </div>
+            <div class="detail-buy-group">
+              <span>Qty</span>
+              <input
+                class="detail-buy-qty"
+                type="number"
+                min="0"
+                :max="selectedProduct.countInStock"
+                v-model.number="qty"
+              />
+            </div>
+            <button
+              :disabled="selectedProduct.countInStock === 0"
+              class="detail-buy-btn"
+              @click="addProductsToCart"
+            >
+              ADD TO CART
+            </button>
+          </div>
+          <div class="detail-reviews">
+            <h1 class="detail-reviews-title">REVIEWS</h1>
+            <div class="detail-reviews-content">
+              <div
+                class="detail-reviews-comments"
+                v-if="selectedProduct.numReviews.length > 0"
+              ></div>
+              <div class="detail-reviews-noComment" v-else>No Reviews</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </scroll-wrapper>
   </transition>
 </template>
 
