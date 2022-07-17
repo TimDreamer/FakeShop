@@ -2,27 +2,29 @@
   <div class="shoppingCart">
     <h1 class="shoppingCart-title">SHOPPING CART</h1>
     <transition name="fade" mode="out-in">
-      <div class="shoppingCart-list" v-if="products.length">
-        <cart-item
-          class="shoppingCart-item"
-          v-for="product in products"
-          :product="product"
-          :key="product.id"
-        ></cart-item>
-        <div class="shoppingCart-buy">
-          <div class="shoppingCart-buy-description">
-            <h1 class="shoppingCart-buy-title">
-              SUBTOTAL ({{ getQrtTotal }}) ITEMS
-            </h1>
-            <p class="shoppingCart-buy-price">
-              {{ getQrtPriceTotal | currency }}
-            </p>
+      <scroll-wrapper direction="vertical" v-if="products.length">
+        <div class="shoppingCart-list">
+          <cart-item
+            class="shoppingCart-item"
+            v-for="product in products"
+            :product="product"
+            :key="product.id"
+          ></cart-item>
+          <div class="shoppingCart-buy">
+            <div class="shoppingCart-buy-description">
+              <h1 class="shoppingCart-buy-title">
+                SUBTOTAL ({{ getQrtTotal }}) ITEMS
+              </h1>
+              <p class="shoppingCart-buy-price">
+                {{ getQrtPriceTotal | currency }}
+              </p>
+            </div>
+            <button class="shoppingCart-buy-btn" :disabled="getQrtTotal === 0">
+              PROCEED TO CHECKOUT
+            </button>
           </div>
-          <button class="shoppingCart-buy-btn" :disabled="getQrtTotal === 0">
-            PROCEED TO CHECKOUT
-          </button>
         </div>
-      </div>
+      </scroll-wrapper>
       <nothing-page class="nothing" v-else>
         <h1 class="nothing-title">Nothing in the Cart</h1>
         <div
@@ -73,6 +75,8 @@ export default {
     opacity: 1
 
 .shoppingCart
+  &-list
+    height: calc( 100vh - 120px )
   &-title
     font-size: 3.6rem
     letter-spacing: .5rem

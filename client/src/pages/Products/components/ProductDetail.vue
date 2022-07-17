@@ -1,6 +1,6 @@
 <template>
-  <transition name="move">
-    <scroll-wrapper direction="vertical">
+  <scroll-wrapper direction="vertical">
+    <transition name="move">
       <div class="detail" v-show="isShow" v-if="selectedProduct">
         <div class="detail-btnGroup">
           <button @click="hideView" class="detail-goBackBtn">GO BACK</button>
@@ -67,8 +67,8 @@
           </div>
         </div>
       </div>
-    </scroll-wrapper>
-  </transition>
+    </transition>
+  </scroll-wrapper>
 </template>
 
 <script>

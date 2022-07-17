@@ -1,12 +1,16 @@
 <template>
   <div class="product">
     <div class="product-imgWrapper">
-      <img
-        :src="product.imageURL"
-        alt="product"
-        class="product-img"
-        v-on="$listeners"
-      />
+      <spinner-wrapper v-slot="{ loading, loaded }">
+        <img
+          v-show="!loading"
+          :src="product.imageURL"
+          alt="product"
+          class="product-img"
+          @load="runLoaded(loaded)"
+          v-on="$listeners"
+        />
+      </spinner-wrapper>
     </div>
     <div class="product-content">
       <h1 class="product-name">{{ product.name }}</h1>
@@ -32,6 +36,11 @@ export default {
     product: {
       type: Object,
       default: () => ({}),
+    },
+  },
+  methods: {
+    runLoaded(cb) {
+      cb();
     },
   },
 };
