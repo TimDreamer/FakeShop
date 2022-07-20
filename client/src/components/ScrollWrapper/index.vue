@@ -91,20 +91,20 @@ export default {
 
 <style lang="sass" scoped>
 .scrollWrapper
-    user-select: none
+  user-select: none
+  > :first-child
+    scrollbar-width: none
+    --ms-overflow-style: none
+    overflow-wrap: normal
+    &::-webkit-scrollbar
+      width: 0
+      display: none
+  &.vertical
     > :first-child
-        scrollbar-width: none
-        --ms-overflow-style: none
-        white-space: nowrap
-        &::-webkit-scrollbar
-            width: 0
-            display: none
-    &.vertical
-        > :first-child
-            overflow-x: hidden
-            overflow-y: scroll
-    &.horizontal
-        > :first-child
-            overflow-x: auto
-            overflow-y: scroll
+      overflow-x: hidden
+      overflow-y: scroll
+  &.horizontal
+    > :first-child
+      overflow-x: auto
+      overflow-y: scroll
 </style>

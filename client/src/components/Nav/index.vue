@@ -45,6 +45,9 @@ export default {
   +flexCenter
   justify-content: space-between
   padding: 0 32px
+  +screenWidthMax(950px)
+    flex-direction: column
+    justify-content: space-evenly
   .brand
     &-name
       font-size: 32px
@@ -53,9 +56,25 @@ export default {
     flex: 0 0 50%
     +flexCenter
     justify-content: space-between
+    +screenWidthMax(950px)
+      align-self: stretch
+    +screenWidthMax(500px)
+      flex-direction: column
+      align-self: flex-start
+      align-items: flex-start
+      gap: 15px
+      position: fixed
+      top: 30px
+      left: 20px
+      z-index: 50
     &-item
       text-decoration: none
       font-size: 24px
       @extend %button
       position: relative
+      text-align: center
+      +screenWidthMax(950px)
+        flex: 0 0 25%
+      +screenWidthMax(500px)
+        box-shadow: 8px 16px 16px 5px rgba(0, 0, 0,0.3 )
 </style>

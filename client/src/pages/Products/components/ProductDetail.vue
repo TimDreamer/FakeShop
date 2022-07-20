@@ -195,6 +195,8 @@ export default {
     align-items: flex-start
     border: 2px solid $gray-2
     border-radius: 10px
+    +screenWidthMax(800px)
+      margin: auto
     &-group
       @extend %flexGroup
       gap: 5rem

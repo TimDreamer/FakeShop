@@ -25,7 +25,11 @@
 =hideScrollBar
     scrollbar-width: none
     --ms-overflow-style: none
-    white-space: nowrap
+    overflow-wrap: normal
     &::-webkit-scrollbar
         width: 0
         display: none
+
+=screenWidthMax($width)
+    @media screen and (max-width: $width)
+        @content

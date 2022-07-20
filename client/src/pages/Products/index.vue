@@ -63,7 +63,11 @@ export default {
   &-list
     width: 90%
     margin: 6rem auto
-    +gridTemplate(null, 2, 30px)
+    +gridTemplate(null, 3, 30px)
     +gridCenter
     position: relative
+    +screenWidthMax(950px)
+      +gridTemplate(null, 2, 15px)
+    +screenWidthMax(550px)
+      +gridTemplate(null, 1, 10px)
 </style>
