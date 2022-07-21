@@ -19,9 +19,11 @@
 <script>
 import Product from "@/pages/Products/components/product.vue";
 import ProductDetail from "@/pages/Products/components/ProductDetail.vue";
+
+import ProductsQuery from "@/schema/ProductsQuery";
 import { mapGetters } from "vuex";
 
-import { CHANGE_SELECTED } from "@/store/types";
+import { CHANGE_SELECTED, SAVE_PRODUCTS } from "@/store/types";
 
 export default {
   name: "Products",
@@ -44,6 +46,14 @@ export default {
       this.$store.dispatch(CHANGE_SELECTED, id).then(() => {
         this.$refs.pDetail.showView();
       });
+    },
+  },
+  apollo: {
+    products: {
+      query: ProductsQuery,
+      result({ data: { products } }) {
+        this.$store.dispatch(SAVE_PRODUCTS, products);
+      },
     },
   },
 };

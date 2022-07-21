@@ -12,21 +12,11 @@
 
 <script>
 import Header from "@/components/Header";
-import ProductsQuery from "@/schema/ProductsQuery";
-import { SAVE_PRODUCTS } from "@/store/types";
 
 export default {
   name: "App",
   components: {
     appHeader: Header,
-  },
-  apollo: {
-    products: {
-      query: ProductsQuery,
-      result({ data: { products } }) {
-        this.$store.dispatch(SAVE_PRODUCTS, products);
-      },
-    },
   },
 };
 </script>
