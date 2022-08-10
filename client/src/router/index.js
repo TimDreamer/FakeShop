@@ -1,8 +1,12 @@
 import VueRouter from 'vue-router';
 import routes from '@/router/routes';
 
-export default new VueRouter({
-	mode: 'history',
-	routes,
-	linkExactActiveClass: 'active',
-});
+Vue.use(VueRouter);
+
+export function createRouter() {
+	return new VueRouter({
+		mode: 'history',
+		routes,
+		linkExactActiveClass: 'active',
+	});
+}

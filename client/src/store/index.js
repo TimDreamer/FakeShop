@@ -4,6 +4,8 @@ import shoppingCart from '@/store/modules/shoppingCart';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-	modules: { shoppingCart },
-});
+export function createStore() {
+	return new Vuex.Store({
+		modules: { shoppingCart },
+	});
+}

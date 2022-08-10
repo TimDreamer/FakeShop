@@ -56,6 +56,12 @@ export default {
       },
     },
   },
+  async asyncData({ store, apolloClient }) {
+    const { data: products } = await apolloClient.query({
+      query: ProductsQuery,
+    });
+    await store.dispatch(SAVE_PRODUCTS, products);
+  },
 };
 </script>
 
