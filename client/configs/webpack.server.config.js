@@ -1,9 +1,8 @@
-const webpack = require('webpack');
-const path = require('path');
 const merge = require('webpack-merge');
 const nodeExternals = require('webpack-node-externals');
-const baseConfig = require('./webpack.base.conf');
+const baseConfig = require('./webpack.base.config');
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(baseConfig, {
 	entry: ['@babel/polyfill', './src/entry-server.js'],
