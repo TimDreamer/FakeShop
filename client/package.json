@@ -13,27 +13,38 @@
     "apollo-link-http": "1.5.17",
     "core-js": "^3.8.3",
     "graphql": "14.6.0",
-    "graphql-tag": "^2.12.6",
+    "graphql-tag": "2.10.3",
     "vue": "2.6.11",
     "vue-apollo": "^3.1.0",
     "vue-router": "3.4.9",
-    "vuex": "3.0.1"
+    "vue-server-renderer": "^2.7.8",
+    "vuex": "3.0.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@babel/polyfill": "7.11.5",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "babel-loader": "8.1.0",
+    "css-loader": "3.6.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "file-loader": "6.0.0",
+    "mini-css-extract-plugin": "0.9.0",
     "prettier": "^2.4.1",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "vue-template-compiler": "2.6.11"
+    "sass": "1.26.5",
+    "sass-loader": "8.0.2",
+    "vue-loader": "15.9.1",
+    "vue-template-compiler": "2.6.11",
+    "webpack": "^5.74.0",
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "1.7.2"
   }
 }
