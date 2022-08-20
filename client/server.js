@@ -1,4 +1,3 @@
-const { createBundleRenderer } = require('vue-server-renderer');
 const fs = require('fs');
 const express = require('express');
 const path = require('path');
@@ -11,7 +10,7 @@ const app = express();
 const template = fs.readFileSync(resolve('./src/index.ssr.html'), 'utf-8');
 
 const createRenderer = (bundle, options) => {
-	return createBundleRenderer(
+	return require('vue-server-renderer').createBundleRenderer(
 		bundle,
 		Object.assign(options, {
 			template,
@@ -46,6 +45,8 @@ const render = (req, res, context) => {
 
 app.use('/dist', express.static(path.resolve('/dist')));
 
+const TIMEOUT_SEC = 5;
+
 app.get('*', (req, res) => {
 	const context = {
 		req,
@@ -53,7 +54,15 @@ app.get('*', (req, res) => {
 		url: req.url,
 	};
 
-	readyPromise.then(() => render(req, res, context));
+	let timeout = setTimeout(() => {
+		res.status(404);
+		res.send(`Timeout with ${TIMEOUT_SEC} sec`);
+	}, TIMEOUT_SEC * 1000);
+
+	readyPromise.then(() => {
+		clearTimeout(timeout);
+		render(req, res, context);
+	});
 });
 
 const server = app.listen(PORT, () => {

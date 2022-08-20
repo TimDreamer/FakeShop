@@ -54,6 +54,9 @@ const getters = {
 
 const mutations = {
 	[SAVE_PRODUCTS](state, payload) {
+		if (!payload.length) {
+			payload = payload.products;
+		}
 		payload.forEach((p) => {
 			p.qty = 0;
 		});

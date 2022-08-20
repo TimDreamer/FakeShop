@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>服务端渲染</title>
+    <title>SSR</title>
 </head>
 
 <body>
     <!--vue-ssr-outlet-->
-    <script type="text/javascript" src="<%= htmlWebpackPlugin.options.files.js %>"></script>
+    {{{renderState({contextKey: 'apolloState', windowKey: '__APOLLO_STATE__'})}}}
 </body>
 
 </html>

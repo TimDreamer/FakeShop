@@ -11,7 +11,7 @@ module.exports = {
 
 	output: {
 		path: path.resolve(__dirname, '../dist'),
-		publicPath: 'dist/',
+		publicPath: '/dist/',
 		filename: '[name].[chunkhash:7].js',
 	},
 
@@ -19,10 +19,10 @@ module.exports = {
 		alias: {
 			'@': path.resolve(__dirname, '../src'),
 		},
-		extensions: ['.js', '.vue', '.sass'],
+		extensions: ['.mjs', '.js', '.vue', '.sass'],
 	},
 
-	modules: {
+	module: {
 		rules: [
 			{
 				test: /\.js$/,
@@ -72,6 +72,11 @@ module.exports = {
 				test: /\.(graphql|gql)$/,
 				exclude: /node_modules/,
 				loader: 'graphql-tag/loader',
+			},
+			{
+				test: /\.mjs$/,
+				include: /node_modules/,
+				type: 'javascript/auto',
 			},
 		],
 	},

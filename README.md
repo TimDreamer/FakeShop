@@ -4,15 +4,13 @@ FakeShop is a project for training my own skills.
 
 ## Tech Stack
 
-1. frontend
+1. frontend (SSR)
     - Vue, Vuex, Vue-Router
     - Sass
     - ApolloClient
 2. backend
     - Typescript
     - GraphQL (ApolloServer)
-3. TODO
-    - Vue SSR
 
 ## Install
 

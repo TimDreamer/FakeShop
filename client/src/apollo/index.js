@@ -1,25 +1,28 @@
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import Vue from 'vue';
-import VueApollo from 'vue-apollo';
-
-Vue.use(VueApollo);
+import * as fetch from 'cross-fetch';
 
 const BASE_URL = 'http://localhost:8081';
 const GRAPHQL_ENDPOINT = 'api/graphql';
 
-const httpLink = createHttpLink({
-	uri: `${BASE_URL}/${GRAPHQL_ENDPOINT}`,
-});
+export function createApolloClient(context) {
+	const isServer = !!context;
 
-const cache = new InMemoryCache();
+	const httpLink = createHttpLink({
+		uri: `${BASE_URL}/${GRAPHQL_ENDPOINT}`,
+		fetch,
+	});
 
-const apolloClient = new ApolloClient({
-	link: httpLink,
-	cache,
-});
+	const cache = new InMemoryCache();
 
-export default new VueApollo({
-	defaultClient: apolloClient,
-});
+	if (!isServer && window.__APOLLO_STATE__) {
+		cache.restore(window.__APOLLO_STATE__);
+		delete window.__APOLLO_STATE__;
+	}
+
+	return new ApolloClient({
+		link: httpLink,
+		cache,
+	});
+}

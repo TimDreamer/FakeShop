@@ -30,6 +30,7 @@ module.exports = function setupDevServer(app, callback) {
 		);
 
 		const clientCompiler = webpack(webpackClientConfig);
+
 		const devMiddleware = require('webpack-dev-middleware')(
 			clientCompiler,
 			{
@@ -53,7 +54,7 @@ module.exports = function setupDevServer(app, callback) {
 			doCallback();
 		});
 
-		app.use(require('webpack-hot-middleware'))(clientCompiler);
+		app.use(require('webpack-hot-middleware')(clientCompiler));
 
 		const serverCompiler = webpack(webpackServerConfig);
 		const mfs = new MemoryFS();

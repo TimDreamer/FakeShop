@@ -1,12 +1,15 @@
 import Vue from 'vue';
+import VueApollo from 'vue-apollo';
 import App from '@/App.vue';
 import { createRouter } from '@/router';
 import { createStore } from '@/store';
 import { sync } from 'vuex-router-sync';
-import apolloProvider from '@/apollo';
+import { createApolloClient } from '@/apollo';
 import TrashSvg from '@/components/Icons/TrashSvg';
 import ScrollWrapper from '@/components/ScrollWrapper';
 import SpinnerWrapper from '@/components/SpinnerWrapper';
+
+Vue.use(VueApollo);
 
 Vue.component('trash-svg', TrashSvg);
 Vue.component('scroll-wrapper', ScrollWrapper);
@@ -31,7 +34,15 @@ Vue.mixin({
 	},
 });
 
-export function createApp() {
+export function createApp(context) {
+	const isServer = !!context;
+
+	const apolloClient = createApolloClient(context);
+
+	const apolloProvider = new VueApollo({
+		defaultClient: apolloClient,
+	});
+
 	const router = new createRouter();
 	const store = new createStore();
 
@@ -44,5 +55,5 @@ export function createApp() {
 		render: (h) => h(App),
 	});
 
-	return { app, router, store, apolloClient: apolloClient.defaultClient };
+	return { app, router, store, apolloClient };
 }
