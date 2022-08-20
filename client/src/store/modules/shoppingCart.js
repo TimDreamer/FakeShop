@@ -9,7 +9,7 @@ import {
 import { sortByBrand } from '@/utils';
 
 const shoppingUtils = {
-	spliceProductInCart(id) {
+	spliceProductInCart(state, id) {
 		const idx = state.productsInCart.findIndex((p) => p.id === id);
 		if (idx === -1) {
 			throw new Error('Product should be in cart but not');
@@ -82,7 +82,10 @@ const mutations = {
 		product.countInStock -= qty;
 	},
 	[CHANGE_QTY](state, { id, newQty }) {
-		const [product, productsInCart] = shoppingUtils.spliceProductInCart(id);
+		const [product, productsInCart] = shoppingUtils.spliceProductInCart(
+			state,
+			id
+		);
 		const qtyDiff = product.qty - newQty;
 		product.qty = newQty;
 		product.countInStock += qtyDiff;
@@ -92,8 +95,8 @@ const mutations = {
 			sortByBrand
 		);
 	},
-	[CLEAR_ALL](_, { id }) {
-		const [product] = shoppingUtils.spliceProductInCart(id);
+	[CLEAR_ALL](state, { id }) {
+		const [product] = shoppingUtils.spliceProductInCart(state, id);
 		product.countInStock += product.qty;
 		product.qty = 0;
 	},

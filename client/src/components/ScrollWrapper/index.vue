@@ -34,7 +34,6 @@ export default {
   methods: {
     isScrollable() {
       this.el = this.$refs.wrapper.children[0];
-      console.log(this.el.scrollHeight, this.el.clientHeight, this.direction);
       if (!this.el) return false;
       switch (this.direction) {
         case SCROLL_DIRECTION.VERTICAL:
